@@ -1,0 +1,42 @@
+services:
+  mongo_sessao1:
+    image: mongo:7.0
+    container_name: mongo_sessao1
+    command: ["mongod", "--replSet", "rs_sessao", "--bind_ip_all", "--port", "27017"]
+    ports:
+      - "28017:27017"
+    volumes:
+      - dados_mongo_sessao1:/data/db
+    networks:
+      - rede_ecommerce_sessoes
+
+  mongo_sessao2:
+    image: mongo:7.0
+    container_name: mongo_sessao2
+    command: ["mongod", "--replSet", "rs_sessao", "--bind_ip_all", "--port", "27017"]
+    ports:
+      - "28018:27017"
+    volumes:
+      - dados_mongo_sessao2:/data/db
+    networks:
+      - rede_ecommerce_sessoes
+
+  mongo_sessao3:
+    image: mongo:7.0
+    container_name: mongo_sessao3
+    command: ["mongod", "--replSet", "rs_sessao", "--bind_ip_all", "--port", "27017"]
+    ports:
+      - "28019:27017"
+    volumes:
+      - dados_mongo_sessao3:/data/db
+    networks:
+      - rede_ecommerce_sessoes
+
+networks:
+  rede_ecommerce_sessoes:
+    driver: bridge
+
+volumes:
+  dados_mongo_sessao1:
+  dados_mongo_sessao2:
+  dados_mongo_sessao3:
